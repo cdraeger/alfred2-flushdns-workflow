@@ -14,7 +14,7 @@ For an easy installation, you can download the exported workflow here: [flushdns
 
 No arguments will prompt you for a user and password.
 
-For more convenience, you can also enter your password after the keyword (separated by a space). This is much quicker, and don't worry: this workflow does not store or submit any data.
+For more convenience, you can also enter your password after the keyword (separated by a space). This is much quicker, and don't worry: this workflow does not store or submit any data. If the password happens to be wrong, you will see the regular prompt by the system.
 
 Success or errors are reported through a notification.
 
