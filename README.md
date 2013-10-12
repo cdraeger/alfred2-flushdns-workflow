@@ -6,7 +6,7 @@ Flush the DNS cache in Mac OS X (10.7+).
 
 ##Download
 
-For an easy installation, you can download the exported workflow here: [flushdns.alfredworkflow](export/flushdns.alfredworkflow)
+For an easy installation, you can download the exported workflow here: [flushdns.alfredworkflow](export/flushdns.alfredworkflow?raw=true)
 
 ##Usage
 
