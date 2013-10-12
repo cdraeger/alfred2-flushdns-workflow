@@ -2,7 +2,7 @@
 
 Flush the DNS cache in Mac OS X (10.7+).
 
-![](https://raw.github.com/cdraeger/alfred2-vevo-workflow/master/screenshots/keyword.png)
+![](https://raw.github.com/cdraeger/alfred2-pushdns-workflow/master/screenshots/keyword.png)
 
 ##Download
 
