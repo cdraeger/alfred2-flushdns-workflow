@@ -51,7 +51,7 @@
 				<key>subtext</key>
 				<string>This command flushes the DNS cache. You can already enter your password after a space.</string>
 				<key>text</key>
-				<string>Flush DNS</string>
+				<string>Flush DNS cache</string>
 				<key>withspace</key>
 				<true/>
 			</dict>

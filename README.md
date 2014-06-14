@@ -10,7 +10,7 @@ For an easy installation, you can download the exported workflow here: [flushdns
 
 ##Usage
 
-###Keyword: `flushdns`
+###Keyword: `fdns`
 
 No arguments will prompt you for a user and password.
 
