@@ -68,16 +68,16 @@
 				<key>applescript</key>
 				<string>on alfred_script(q)
   if q is equal to "" then
-	set output to (do shell script "killall -HUP mDNSResponder;echo $?" with administrator privileges)
+    set output to (do shell script "killall -HUP mDNSResponder;echo $?" with administrator privileges)
   else
-	set pwd to q
-	set output to (do shell script "killall -HUP mDNSResponder;echo $?" password pwd with administrator privileges)
+    set pwd to q
+    set output to (do shell script "killall -HUP mDNSResponder;echo $?" password pwd with administrator privileges)
   end if
 
   if output is equal to "0" then
-	return "DNS cache successfully flushed."
+    return "DNS cache successfully flushed."
   else
-	return "Error, cache was NOT flushed."
+    return "Error, cache was NOT flushed."
   end if
 end alfred_script</string>
 				<key>cachescript</key>
