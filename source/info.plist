@@ -68,10 +68,10 @@
 				<key>applescript</key>
 				<string>on alfred_script(q)
   if q is equal to "" then
-    set output to (do shell script "killall -HUP mDNSResponder;echo $?" with administrator privileges)
+    set output to (do shell script "(sudo killall -HUP mDNSResponder || sudo dscacheutil -flushcache);echo $?" with administrator privileges)
   else
     set pwd to q
-    set output to (do shell script "killall -HUP mDNSResponder;echo $?" password pwd with administrator privileges)
+    set output to (do shell script "(killall -HUP mDNSResponder || dscacheutil -flushcache);echo $?" password pwd with administrator privileges)
   end if
 
   if output is equal to "0" then
