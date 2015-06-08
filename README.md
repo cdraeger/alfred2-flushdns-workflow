@@ -18,7 +18,8 @@ For more convenience, you can also enter your password after the keyword (separa
 
 Success or errors are reported through a notification.
 
-Command used (see [Apple Support](http://support.apple.com/kb/HT5343)): `sudo killall -HUP mDNSResponder`
+Command used (see [Apple Support](http://support.apple.com/kb/HT5343)): 
+  `sudo killall -HUP mDNSResponder || sudo dscacheutil -flushcache`
 
 ##Changelog
 
