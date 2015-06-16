@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>de.draegerit.alfred.flushdns</string>
+	<string>io.draeger.alfred.flushdns</string>
 	<key>category</key>
 	<string>Tools</string>
 	<key>connections</key>
@@ -34,7 +34,7 @@
 	<key>createdby</key>
 	<string>Carsten Draeger</string>
 	<key>description</key>
-	<string>Flush the DNS cache in Mac OS X (10.7+)</string>
+	<string>Flush the DNS cache in OS X (10.9+)</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -67,18 +67,25 @@
 			<dict>
 				<key>applescript</key>
 				<string>on alfred_script(q)
-  if q is equal to "" then
-	set output to (do shell script "killall -HUP mDNSResponder;echo $?" with administrator privileges)
-  else
-	set pwd to q
-	set output to (do shell script "killall -HUP mDNSResponder;echo $?" password pwd with administrator privileges)
-  end if
+  set shellCmd1 to "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
 
-  if output is equal to "0" then
-	return "DNS cache successfully flushed."
-  else
-	return "Error, cache was NOT flushed."
-  end if
+  # for OS X 10.10, 10.10.1, 10.10.2 and 10.10.3 (Yosemite)
+  set shellCmd2 to "sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches"
+
+  set finalShellCmd to shellCmd1 &amp; " || " &amp; shellCmd2
+
+  try
+    if q is equal to "" then
+      do shell script finalShellCmd with administrator privileges
+    else
+      set pwd to q
+      do shell script finalShellCmd password pwd with administrator privileges
+    end if
+  on error errMsg number errNo
+    return "Error: " &amp; errMsg
+  end try
+
+  return "DNS cache successfully flushed"
 end alfred_script</string>
 				<key>cachescript</key>
 				<false/>
@@ -117,7 +124,7 @@ end alfred_script</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>@blacklight24 (Twitter)</string>
+	<string>Follow or contact me on Twitter: @blacklight24</string>
 	<key>uidata</key>
 	<dict>
 		<key>159A291E-3339-491E-8D3F-79091BE0319B</key>

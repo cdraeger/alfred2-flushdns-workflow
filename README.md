@@ -1,6 +1,6 @@
 #Alfred 2 Flush DNS Workflow
 
-Flush the DNS cache in Mac OS X (10.7+).
+Flush the DNS cache in OS X (10.9+).
 
 ![](https://raw.github.com/cdraeger/alfred2-flushdns-workflow/master/screenshots/keyword.png)
 
@@ -18,9 +18,20 @@ For more convenience, you can also enter your password after the keyword (separa
 
 Success or errors are reported through a notification.
 
-Command used (see [Apple Support](http://support.apple.com/kb/HT5343)): `sudo killall -HUP mDNSResponder`
+Command used: 
+
+__`sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`__
+
+If `mDNSResponder` is not available (see [how to flush the DNS cache in OS X Yosemite](http://osxdaily.com/2014/11/20/flush-dns-cache-mac-os-x/)), the following command for `Discoveryd` is used:
+
+__`sudo discoveryutil mdnsflushcache; sudo discoveryutil udnsflushcaches`__
 
 ##Changelog
 
+####v1.1
+- Updated for compatibility with OS X 10.10 Yosemite
+- Improved error handling
+- Minimum requirement upped to OS X 10.9 Mavericks (though it might still work on OS X 10.7 / 10.8)
+
 ####v1.0
-Initial release
+- Initial release
