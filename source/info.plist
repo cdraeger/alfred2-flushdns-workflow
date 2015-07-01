@@ -44,62 +44,6 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>fdns</string>
-				<key>subtext</key>
-				<string>This command flushes the DNS cache. You can already enter your password after a space.</string>
-				<key>text</key>
-				<string>Flush DNS cache</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>CD69778A-A49B-44D1-9F54-B24359DEF8B8</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>applescript</key>
-				<string>on alfred_script(q)
-  set shellCmd1 to "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
-
-  # for OS X 10.10, 10.10.1, 10.10.2 and 10.10.3 (Yosemite)
-  set shellCmd2 to "sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches"
-
-  set finalShellCmd to shellCmd1 &amp; " || " &amp; shellCmd2
-
-  try
-    if q is equal to "" then
-      do shell script finalShellCmd with administrator privileges
-    else
-      set pwd to q
-      do shell script finalShellCmd password pwd with administrator privileges
-    end if
-  on error errMsg number errNo
-    return "Error: " &amp; errMsg
-  end try
-
-  return "DNS cache successfully flushed"
-end alfred_script</string>
-				<key>cachescript</key>
-				<false/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.applescript</string>
-			<key>uid</key>
-			<string>AAE2193C-E6C1-4A1C-8A17-774AF8868DCF</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -119,6 +63,70 @@ end alfred_script</string>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
 			<string>159A291E-3339-491E-8D3F-79091BE0319B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(q)
+  set shellCmd1 to "sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder"
+
+  # for OS X 10.10, 10.10.1, 10.10.2 and 10.10.3 (Yosemite)
+  set shellCmd2 to "sudo discoveryutil mdnsflushcache;sudo discoveryutil udnsflushcaches"
+
+  try
+    if q is equal to "" then
+      do shell script shellCmd1 with administrator privileges
+    else
+      set pwd to q
+      do shell script shellCmd1 password pwd with administrator privileges
+    end if
+  on error errMsg number errNo
+    # fallback if first command was not found
+    try
+      if q is equal to "" then
+        do shell script shellCmd2 with administrator privileges
+      else
+        set pwd to q
+        do shell script shellCmd2 password pwd with administrator privileges
+      end if
+    on error errMsg number errNo
+      return "Error: " &amp; errMsg
+    end try
+  end try
+
+  return "DNS cache successfully flushed"
+end alfred_script</string>
+				<key>cachescript</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>AAE2193C-E6C1-4A1C-8A17-774AF8868DCF</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>fdns</string>
+				<key>subtext</key>
+				<string>This command flushes the DNS cache. You can already enter your password after a space.</string>
+				<key>text</key>
+				<string>Flush DNS cache</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>CD69778A-A49B-44D1-9F54-B24359DEF8B8</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>

@@ -22,11 +22,14 @@ Command used:
 
 __`sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`__
 
-If `mDNSResponder` is not available (see [how to flush the DNS cache in OS X Yosemite](http://osxdaily.com/2014/11/20/flush-dns-cache-mac-os-x/)), the following command for `Discoveryd` is used:
+If `mDNSResponder` is not available (currently only the case for OS X 10.10 - 10.10.3, see [this link](http://osxdaily.com/2014/11/20/flush-dns-cache-mac-os-x/)), the following command for `Discoveryd` is used:
 
 __`sudo discoveryutil mdnsflushcache; sudo discoveryutil udnsflushcaches`__
 
 ##Changelog
+
+####v1.1.1
+- Bugfix for OS X 10.10.4+
 
 ####v1.1
 - Updated for compatibility with OS X 10.10 Yosemite
